@@ -1,0 +1,12 @@
+{
+  "/api/afisha": {
+	"GET": {
+	  "route": "search"
+	}
+  },
+  "/api/afisha/:id": {
+	"GET": {
+	  "route": "search"
+	}
+  }
+}

@@ -3,5 +3,10 @@
 	"GET": {
 	  "route": "index"
 	}
+  },
+  "/#/*": {
+	"GET": {
+	  "route": "index"
+	}
   }
 }

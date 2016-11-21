@@ -1,12 +1,22 @@
 {
-  "/api/afisha": {
+  "/api/afisha/search": {
 	"GET": {
 	  "route": "search"
 	}
   },
-  "/api/afisha/:id": {
+  "/api/afisha/search/:id": {
 	"GET": {
 	  "route": "search"
+	}
+  },
+  "/api/afisha/add": {
+	"GET": {
+	  "route": "add"
+	}
+  },
+  "/api/afisha/clear": {
+	"GET": {
+	  "route": "clear"
 	}
   }
 }

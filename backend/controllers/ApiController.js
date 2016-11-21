@@ -1,23 +1,42 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/afishaDB');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+var db = require('../lib/db.js'),
+	mongoose = require('mongoose'),
+	afishaSchema = require('../lib/schemas/afisha.js'),
+	afishaModel = mongoose.model('Afisha', afishaSchema)
 
-var afishaSchema = mongoose.Schema({
-	name: String
-});
-var Afisha = mongoose.model('Afisha', afishaSchema);
-// todo move to connect class
 exports.search = function(req, res, next) {
-	Afisha.find(function (err, afisha) {
-		if (err) return console.error(err);
-		res.send(afisha)
-	});
+	db.start(() => {
+		afishaModel.find(function (err, afisha) {
+			if (err) {
+				return res.send({message: 'error', err: err});
+			}
+			res.send(afisha);
+			db.close();
+		});
+	})
 };
 
+exports.add = function(req, res, next) {
+	db.start(() => {
+		var rockConcert = new afishaModel({ name: 'AC/DC', place: 'Planeta Kino', coords: {lat: 50, lon: 30}, image: '' });
+		rockConcert.save(function (err, rockConcert) {
+			if (err) {
+				return res.send({message: 'error', err: err});
+			}
+			res.send({message: 'ok'});
+			db.close();
+		});
+	})
+};
 
-// var rockConcert = new Afisha({ name: 'Kiss' });
-// rockConcert.save(function (err, rockConcert) {
-// 	if (err) return console.error(err);
-// });
+exports.clear = function(req, res, next) {
+	db.start(() => {
+		afishaModel.remove({}, function(err) {
+			if (err) {
+				return res.send({message: 'error', err: err});
+			}
+			res.send({message: 'collection removed'});
+			db.close();
+		});
+	})
+};
 

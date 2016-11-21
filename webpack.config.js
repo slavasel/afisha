@@ -3,6 +3,7 @@ var fs = require('fs')
 var path = require('path')
 var webpack = require('webpack')
 var bourbon = require('bourbon');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 
@@ -31,7 +32,8 @@ module.exports = {
             loader: 'file?name=[path][name].[ext]&context=./src/main',
         }, {
             test: /\.scss$/,
-            loader: `style!css!sass?includePaths[]=${bourbon.includePaths}`,
+            //loader: `style!css!sass?includePaths[]=${bourbon.includePaths}`,
+            loader: ExtractTextPlugin.extract(("style-loader", "css-loader!sass-loader")),
         }, {
             test: /\.(png|jpg|woff|ttf|woff2)$/,
             loader: 'url?limit=100000',
@@ -44,6 +46,9 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+        }),
+        new ExtractTextPlugin("style.css", {
+            allChunks: true
         })
     ],
 

@@ -1,0 +1,10 @@
+.MainWrapper {
+  .Content {
+    &--left {
+      background: #ccc;
+    }
+    &--right {
+      background: #aaa;
+    }
+  }
+}

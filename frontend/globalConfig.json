@@ -1,3 +1,4 @@
 {
-  "projectName": "Afish(only)a"
+  "projectName": "Afish(only)a",
+  "reduxDebug": true
 }

@@ -1,6 +1,5 @@
-node server.js
-webpack --watch
+npm start
 
 
 // Entering point
-localhost:8888
+localhost:3000

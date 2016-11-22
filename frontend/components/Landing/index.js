@@ -4,6 +4,7 @@ import Header from '../Header'
 import Footer from '../Footer'
 import LastResults from '../LastResults'
 import { fetchAfishas } from '../../actions'
+import globalConfig from '../../globalConfig.json';
 
 class Landing extends React.Component {
 	constructor() {
@@ -20,7 +21,7 @@ class Landing extends React.Component {
 			<div>
 				<nav class="navbar navbar-inverse navbar-fixed-top">
 					<div class="container">
-						<Header projectName={this.props.globalConfig.projectName} />
+						<Header projectName={globalConfig.projectName} />
 					</div>
 				</nav>
 
@@ -37,7 +38,7 @@ class Landing extends React.Component {
 
 					<hr />
 
-					<Footer projectName={this.props.globalConfig.projectName}/>
+					<Footer projectName={globalConfig.projectName}/>
 				</div>
 			</div>
 		);

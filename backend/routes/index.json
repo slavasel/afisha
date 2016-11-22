@@ -4,7 +4,12 @@
 	  "route": "index"
 	}
   },
-  "/#/*": {
+  "/afisha": {
+	"GET": {
+	  "route": "index"
+	}
+  },
+  "/afisha/*": {
 	"GET": {
 	  "route": "index"
 	}

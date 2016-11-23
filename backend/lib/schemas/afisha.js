@@ -7,7 +7,8 @@ var schemaJSON = {
 		lat: "Number",
 		lon: "Number"
 	},
-	"image": "String"
+	"image": "String",
+	"startTime": "Date"
 }
 
 var schema = mongoose.Schema(schemaJSON);

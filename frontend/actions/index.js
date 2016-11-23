@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const REQUEST_AFISHAS = 'REQUEST_AFISHAS'
 function requestAfishas() {
 	return {
@@ -14,11 +16,21 @@ const recieveAfishas = (json) => {
 	}
 }
 
-export function fetchAfishas() {
+export function fetchAfishas(count) {
 	return function (dispatch) {
 		dispatch(requestAfishas())
 
-		return fetch('/api/afisha/search/')
+		let uriParams = _.transform({
+			count: count
+		}, (res, v, k) => {
+			if (v) res[k] = v;
+		});
+
+		const uriParamsReady = Object.keys(uriParams).map(function(key) {
+			return key + '=' + uriParams[key];
+		}).join('&');
+
+		return fetch(`/api/afisha/search?${uriParamsReady}`)
 			.then(response => response.json())
 			.then(json =>
 				dispatch(recieveAfishas(json))

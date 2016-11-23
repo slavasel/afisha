@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Header from '../Header'
-import Footer from '../Footer'
-import LastResults from '../LastResults'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import Jumbotron from '../../components/Jumbotron'
+import LastResults from '../../components/LastResults'
+import MiniMap from '../../components/MiniMap'
 import { fetchAfishas } from '../../actions'
 import globalConfig from '../../globalConfig.json';
 
@@ -13,7 +15,7 @@ class Landing extends React.Component {
 
 	componentDidMount() {
 		const { dispatch } = this.props;
-		dispatch(fetchAfishas());
+		dispatch(fetchAfishas(3));
 	}
 
 	render() {
@@ -25,21 +27,21 @@ class Landing extends React.Component {
 					</div>
 				</nav>
 
-				<div class="jumbotron">
-					<div class="container">
-						<h1>Hello, world!</h1>
-						<p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-						<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+				<Jumbotron />
+
+				<div class="container">
+					<div class= "main col-xs-7">
+						<LastResults results={this.props.afishas}/>
+					</div>
+
+					<div class="sidebar col-xs-5">
+						<MiniMap />
 					</div>
 				</div>
 
-				<div class="container">
-					<LastResults results={this.props.afishas}/>
+				<hr />
 
-					<hr />
-
-					<Footer projectName={globalConfig.projectName}/>
-				</div>
+				<Footer projectName={globalConfig.projectName}/>
 			</div>
 		);
 	}

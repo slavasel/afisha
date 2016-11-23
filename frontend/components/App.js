@@ -1,8 +1,8 @@
 import 'babel-polyfill'
 import React from 'react'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import Landing from './Landing'
-import Test from './Test'
+import Landing from '../containers/Landing'
+import Test from '../containers/Test'
 
 import './app_styles.scss'
 

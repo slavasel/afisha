@@ -4,7 +4,12 @@
 	  "route": "search"
 	}
   },
-  "/api/afisha/search/:id": {
+  "/api/afisha/search/id/:id": {
+	"GET": {
+	  "route": "search"
+	}
+  },
+  "/api/afisha/search/latlon/:lat/:lon": {
 	"GET": {
 	  "route": "search"
 	}

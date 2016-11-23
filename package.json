@@ -24,6 +24,7 @@
     "jscs": "^3.0.7",
     "json-loader": "^0.5.4",
     "json-routing": "^0.1.4",
+    "lodash": "^4.17.2",
     "mongodb": "^2.2.11",
     "mongoose": "^4.6.8",
     "morgan": "^1.7.0",

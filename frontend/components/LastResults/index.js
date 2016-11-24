@@ -2,7 +2,7 @@ import React from 'react';
 import ResultCard from '../ResultCard';
 
 class LastResults extends React.Component {
-	constructor() {
+	constructor(props) {
 		super();
 	}
 
@@ -13,11 +13,12 @@ class LastResults extends React.Component {
 
 		return (
 			<div class="row">
-				{this.props.results.map((result, i) => {
-					return (
-						<ResultCard result={result} key={i} index={i} />
-					)
-				})}
+				{Object.keys(this.props.results).map((idx) => {
+						return (
+							<ResultCard result={this.props.results[idx]} key={idx} index={idx} onItemHover={this.props.onItemHover} />
+						)
+					})
+				}
 			</div>
 		);
 	}

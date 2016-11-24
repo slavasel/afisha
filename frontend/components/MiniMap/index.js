@@ -28,8 +28,28 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
 ));
 
 const transformResultToMarker = (result) => {
-	let marker = { position: result.coords, key: result._id, defaultAnimation: 2 };
+	const commonMarkerImage = '../../../static/images/icon-black.png';
+	const selectedMarkerImage = '../../../static/images/icon-red.png';
+	const image = {
+		url: result.hovered ? selectedMarkerImage : commonMarkerImage,
+		size: new google.maps.Size(55, 55),
+		origin: new google.maps.Point(-11, -14),
+		anchor: new google.maps.Point(0, 0)
+	};
+
+	let marker = {
+		position: result.coords,
+		key: result._id,
+		defaultAnimation: 2,
+		label: handleLable(result.name),
+		icon: image,
+		hovered: false
+	};
 	return marker;
+}
+
+const handleLable = (text) => {
+	return text.split('').splice(0, 1).join();
 }
 
 class MiniMap extends React.Component {
@@ -37,7 +57,8 @@ class MiniMap extends React.Component {
 		super();
 
 		this.state = {
-			markers: []
+			markers: [],
+			hoveredElementId: false
 		};
 
 		this.handleMapLoad = this.handleMapLoad.bind(this);
@@ -45,19 +66,36 @@ class MiniMap extends React.Component {
 		this.handleMarkerRightClick = this.handleMarkerRightClick.bind(this);
 	}
 
-	shouldComponentUpdate(nextProps) {
-		return nextProps.results.length;
-	}
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	let hoverStateChanged = false;
+	// 	Object.keys(nextProps.results).map(idx => {
+	// 		let markerHoverState = _.result(_.find(nextState.markers, function(obj) {
+	// 			return obj.key === idx;
+	// 		}), 'hovered');
+		//
+		// 	if (markerHoverState != nextProps.results[idx].hovered) {
+		// 		hoverStateChanged = nextProps.results[idx]._id;
+		// 		return false;
+		// 	}
+		// });
+		// this.state.hoveredElementId = hoverStateChanged;
+		// //console.log(this.state.hoveredElementId);
+		//
+		// return Object.keys(nextProps.results).length !== nextState.markers.length || this.state.hoveredElementId;
+	//}
 
-	componentDidUpdate() {
-		if (!this.state.markers.length) {
-			let newMarkers = [];
-			this.props.results.map((result) => {
-				newMarkers.push(transformResultToMarker(result));
-			});
-			this.setState({markers: newMarkers});
-			this.fitBounds(newMarkers);
+	componentWillReceiveProps(nextProps) {
+		if (!this._mapComponent) {
+			return false;
 		}
+
+		let newMarkers = [];
+		Object.keys(nextProps.results).map((idx) => {
+			newMarkers.push(transformResultToMarker(nextProps.results[idx]));
+		});
+
+		this.state.markers = newMarkers;
+		this.fitBounds(newMarkers);
 	}
 
 	fitBounds(newMarkers) {
@@ -65,7 +103,6 @@ class MiniMap extends React.Component {
 		newMarkers.map((marker) => {
 			bounds.extend(marker.position);
 		});
-		console.log(this.state.markers);
 		this._mapComponent.fitBounds(bounds);
 	}
 

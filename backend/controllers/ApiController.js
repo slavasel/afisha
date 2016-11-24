@@ -1,15 +1,23 @@
 var db = require('../lib/db.js'),
 	mongoose = require('mongoose'),
 	afishaSchema = require('../lib/schemas/afisha.js'),
-	afishaModel = mongoose.model('Afisha', afishaSchema)
+	afishaModel = mongoose.model('Afisha', afishaSchema);
 
 exports.search = function(req, res, next) {
 	db.start(() => {
+		"use strict";
+
 		afishaModel.find(function (err, afisha) {
 			if (err) {
 				return res.send({message: 'error', err: err});
 			}
-			res.send(afisha);
+
+			let returnData = {};
+			afisha.map((item, idx) => {
+				returnData[item._id] = item;
+			});
+
+			res.send(returnData);
 			db.close();
 		});
 	})

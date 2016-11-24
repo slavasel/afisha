@@ -1,13 +1,13 @@
 import _ from 'lodash';
 
-export const REQUEST_AFISHAS = 'REQUEST_AFISHAS'
+export const REQUEST_AFISHAS = 'REQUEST_AFISHAS';
 function requestAfishas() {
 	return {
 		type: REQUEST_AFISHAS
 	}
 }
 
-export const RECIEVE_AFISHAS = 'RECIEVE_AFISHAS'
+export const RECIEVE_AFISHAS = 'RECIEVE_AFISHAS';
 const recieveAfishas = (json) => {
 	return {
 		type: RECIEVE_AFISHAS,
@@ -18,7 +18,7 @@ const recieveAfishas = (json) => {
 
 export function fetchAfishas(count) {
 	return function (dispatch) {
-		dispatch(requestAfishas())
+		dispatch(requestAfishas());
 
 		let uriParams = _.transform({
 			count: count
@@ -35,5 +35,13 @@ export function fetchAfishas(count) {
 			.then(json =>
 				dispatch(recieveAfishas(json))
 			)
+	}
+}
+
+export const HOVER_ITEM = 'HOVER_ITEM';
+export function hoverItem(id) {
+	return {
+		type: HOVER_ITEM,
+		id: id
 	}
 }

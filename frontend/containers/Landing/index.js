@@ -5,7 +5,7 @@ import Footer from '../../components/Footer'
 import Jumbotron from '../../components/Jumbotron'
 import LastResults from '../../components/LastResults'
 import MiniMap from '../../components/MiniMap'
-import { fetchAfishas } from '../../actions'
+import { fetchAfishas, hoverItem } from '../../actions'
 import globalConfig from '../../globalConfig.json';
 
 class Landing extends React.Component {
@@ -16,6 +16,12 @@ class Landing extends React.Component {
 	componentDidMount() {
 		const { dispatch } = this.props;
 		dispatch(fetchAfishas(3));
+	}
+
+	onItemHover(id) {
+		const { dispatch } = this.props;
+		dispatch(hoverItem(id));
+		this.forceUpdate();
 	}
 
 	render() {
@@ -31,7 +37,8 @@ class Landing extends React.Component {
 
 				<div class="container">
 					<div class= "main col-xs-7">
-						<LastResults results={this.props.afishas}/>
+						<LastResults onItemHover={(id) => this.onItemHover.bind(this)(id)}
+						             results={this.props.afishas}/>
 					</div>
 
 					<div class="sidebar col-xs-5">

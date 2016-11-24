@@ -17,8 +17,12 @@ exports.search = function(req, res, next) {
 
 exports.add = function(req, res, next) {
 	db.start(() => {
-		var rockConcert = new afishaModel({ name: 'AC/DC', place: 'Planeta Kino', coords: {lat: 50, lon: 30}, image: '' });
-		rockConcert.save(function (err, rockConcert) {
+		var cityEvent = new afishaModel({ name: 'AC/DC', place: 'Planeta Kino', coords: {lat: 50, lng: 30}, image: '' });
+		if (req.params.name) {
+			cityEvent = new afishaModel({ name: req.params.name, place: req.params.place, coords: {lat: req.params.lat, lng: req.params.lng}, image: '' });
+		}
+
+		cityEvent.save(function (err, ev) {
 			if (err) {
 				return res.send({message: 'error', err: err});
 			}

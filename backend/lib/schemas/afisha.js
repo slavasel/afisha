@@ -5,7 +5,7 @@ var schemaJSON = {
 	"place": "String",
 	"coords": {
 		lat: "Number",
-		lon: "Number"
+		lng: "Number"
 	},
 	"image": "String",
 	"startTime": "Date"

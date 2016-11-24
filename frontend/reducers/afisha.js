@@ -1,4 +1,4 @@
-import { RECIEVE_AFISHAS, REQUEST_AFISHAS, HOVER_ITEM } from '../actions'
+import { RECIEVE_AFISHAS, REQUEST_AFISHAS, HOVER_ITEM, HOVER_OUT_ITEM } from '../actions'
 
 const initialState = {
 	afishas: {}
@@ -17,10 +17,16 @@ const afisha = (state = initialState, action) => {
 			});
 
 		case HOVER_ITEM:
-			let newState = Object.assign({}, state);
-			newState.afishas[action.id].hovered = true;
+			let newHoverState = Object.assign({}, state);
+			newHoverState.afishas[action.id].hovered = true;
 
-			return newState;
+			return newHoverState;
+
+		case HOVER_OUT_ITEM:
+			let newHoverOutState = Object.assign({}, state);
+			newHoverOutState.afishas[action.id].hovered = false;
+
+			return newHoverOutState;
 
 		default:
 			return state

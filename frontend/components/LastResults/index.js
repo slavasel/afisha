@@ -15,7 +15,12 @@ class LastResults extends React.Component {
 			<div class="row">
 				{Object.keys(this.props.results).map((idx) => {
 						return (
-							<ResultCard result={this.props.results[idx]} key={idx} index={idx} onItemHover={this.props.onItemHover} />
+							<ResultCard result={this.props.results[idx]}
+							            key={idx}
+							            index={idx}
+							            onItemHover={this.props.onItemHover}
+							            onItemOut={this.props.onItemOut}
+							/>
 						)
 					})
 				}

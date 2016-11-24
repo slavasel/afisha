@@ -85,17 +85,23 @@ class MiniMap extends React.Component {
 	//}
 
 	componentWillReceiveProps(nextProps) {
+		// exit if no map rendered
 		if (!this._mapComponent) {
 			return false;
 		}
 
+		// create marker objects
 		let newMarkers = [];
 		Object.keys(nextProps.results).map((idx) => {
 			newMarkers.push(transformResultToMarker(nextProps.results[idx]));
 		});
 
+		// fit bounds on initial load
+		if (Object.keys(nextProps.results).length > this.state.markers.length) {
+			this.fitBounds(newMarkers);
+		}
+
 		this.state.markers = newMarkers;
-		this.fitBounds(newMarkers);
 	}
 
 	fitBounds(newMarkers) {

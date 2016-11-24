@@ -45,3 +45,11 @@ export function hoverItem(id) {
 		id: id
 	}
 }
+
+export const HOVER_OUT_ITEM = 'HOVER_OUT_ITEM';
+export function hoverOutItem(id) {
+	return {
+		type: HOVER_OUT_ITEM,
+		id: id
+	}
+}

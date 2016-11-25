@@ -48,7 +48,7 @@ class Landing extends React.Component {
 						             results={this.props.afishas}/>
 					</div>
 
-					<div class="sidebar col-xs-5">
+					<div class="sidebar AppSidebar">
 						<MiniMap results={this.props.afishas} />
 					</div>
 				</div>

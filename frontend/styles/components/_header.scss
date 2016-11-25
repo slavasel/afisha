@@ -1,0 +1,14 @@
+.AppHeader {
+  background: url("/static/images/header.jpg") 50% 50% no-repeat;
+  margin-top: 50px;
+
+  .AppHeader-Greeting {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    text-align: center;
+  }
+
+  @include respond-to(medium) {
+    margin-top: 60px;
+  }
+}

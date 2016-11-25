@@ -14,11 +14,6 @@
 	  "route": "search"
 	}
   },
-  "/api/afisha/add": {
-	"GET": {
-	  "route": "add"
-	}
-  },
   "/api/afisha/add/:name/:place/:lat/:lng/:time": {
 	"GET": {
 	  "route": "add"

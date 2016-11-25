@@ -1,0 +1,16 @@
+$small: 320px;
+$medium: 768px;
+$wide: 1024px;
+
+
+@mixin respond-to($media) {
+  @if $media == small {
+    @media (min-width: $small) { @content; }
+  }
+  @else if $media == medium {
+    @media (min-width: $medium) { @content; }
+  }
+  @else if $media == wide {
+    @media (min-width: $wide) { @content; }
+  }
+}

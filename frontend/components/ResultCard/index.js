@@ -16,14 +16,27 @@ class ResultCard extends React.Component {
 
 		return (
 			<div key={`col-${this.props.index}`}
-			     class="col-md-4"
+			     class="HorizontalCard"
+			     onMouseOver={() => itemHover(this.props.result._id)}
+			     onMouseOut={() => itemOut(this.props.result._id)}
 			>
-				<h2 onMouseEnter={() => itemHover(this.props.result._id)}
-				    onMouseOut={() => itemOut(this.props.result._id)}
+				<h2 class="HorizontalCard-Title"
 				    key={`event-name-${this.props.index}`}
-				>{this.props.result.name}</h2>
-				<p>Мероприятие пройдет в "{this.props.result.place}"</p>
-				<p><a key={`event-action-${this.props.index}`} class="btn btn-default" href="#" role="button">Узнать больше</a></p>
+				>
+					{this.props.result.name}
+				</h2>
+
+				<p>Место: "{this.props.result.place}"</p>
+
+				<p class="HorizontalCard-Footer">
+					<a key={`event-action-${this.props.index}`}
+					   class="btn btn-default"
+					   href="#"
+					   role="button"
+					>
+						Узнать больше
+					</a>
+				</p>
 			</div>
 		);
 	}

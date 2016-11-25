@@ -3,8 +3,7 @@ import React from 'react'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Landing from '../containers/Landing'
 import Test from '../containers/Test'
-
-import './app_styles.scss'
+import '../styles/main.scss'
 
 const Root = props => (props.children);
 

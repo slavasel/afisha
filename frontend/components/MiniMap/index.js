@@ -33,7 +33,7 @@ const transformResultToMarker = (result) => {
 	const image = {
 		url: result.hovered ? selectedMarkerImage : commonMarkerImage,
 		size: new google.maps.Size(55, 55),
-		origin: new google.maps.Point(-11, -14),
+		origin: new google.maps.Point(-12, -15),
 		anchor: new google.maps.Point(0, 0)
 	};
 

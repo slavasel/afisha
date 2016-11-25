@@ -2,21 +2,20 @@ var mongoose = require('mongoose');
 
 module.exports = {
 	start: (cb) => {
-		if (mongoose.connection) {
-			mongoose.connection.close();
+		if (this.db) {
+			this.db.close();
 		}
 
 		mongoose.connect('mongodb://localhost:27017/afishaDB');
-		var db = mongoose.connection;
-		db.on('error', console.error.bind(console, 'connection error:'));
+		this.db = mongoose.connection;
+		this.db.on('error', console.error.bind(console, 'connection error:'));
 
-		db.once('open', () => {
+		this.db.once('open', () => {
 			cb();
 		})
 	},
 
 	close: () => {
-		var db = mongoose.connection;
-		db.close();
+		this.db.close();
 	}
 };

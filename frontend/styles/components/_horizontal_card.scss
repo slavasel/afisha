@@ -1,0 +1,26 @@
+.HorizontalCard {
+  width: 100%;
+  min-height: 200px;
+  padding: 20px;
+  position: relative;
+  border-bottom: 1px solid #eee;
+
+  .HorizontalCard-Title {
+    font-family: sans-serif;
+    margin: 0 10px 10px 0;
+    font-size: 24px;
+  }
+
+  .HorizontalCard-Footer {
+    position: absolute;
+    bottom: 10px;
+  }
+
+  &:hover {
+    background: #eee;
+  }
+
+  @include respond-to(medium) {
+
+  }
+}

@@ -16,6 +16,7 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
 		defaultZoom={8}
 		defaultCenter={{ lat: 50, lng: 30 }}
 		onClick={props.onMapClick}
+	    options={{scrollwheel: false}}
 	>
 		{props.markers.map(marker => (
 			<Marker
@@ -164,10 +165,10 @@ class MiniMap extends React.Component {
 				/>
 				<GettingStartedGoogleMap
 					containerElement={
-						<div style={{ height: `500px`, width: '250px' }} />
+						<div style={{ height: `500px`, width: '100%' }} />
 					}
 					mapElement={
-						<div style={{ height: `500px`, width: '250px' }} />
+						<div style={{ height: `500px`, width: '100%' }} />
 					}
 					onMapLoad={this.handleMapLoad}
 					onMapClick={this.handleMapClick}

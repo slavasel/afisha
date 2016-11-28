@@ -8,6 +8,8 @@ import MiniMap from '../../components/MiniMap'
 import { fetchAfishas, hoverItem, hoverOutItem } from '../../actions'
 import globalConfig from '../../globalConfig.json';
 
+import '../../styles/landing.scss'
+
 class Landing extends React.Component {
 	constructor() {
 		super();
@@ -34,15 +36,15 @@ class Landing extends React.Component {
 		return (
 			<div>
 				<nav class="navbar navbar-inverse navbar-fixed-top">
-					<div class="container">
+					<div class="AppContainer container">
 						<Header projectName={globalConfig.projectName} />
 					</div>
 				</nav>
 
 				<Jumbotron />
 
-				<div class="container">
-					<div class= "main col-xs-7">
+				<div class="container AppContainer AppBody">
+					<div class= "main AppBody-Left">
 						<LastResults onItemHover={(id) => this.onItemHover.bind(this)(id)}
 						             onItemOut={(id) => this.onItemOut.bind(this)(id)}
 						             results={this.props.afishas}/>
@@ -52,8 +54,6 @@ class Landing extends React.Component {
 						<MiniMap results={this.props.afishas} />
 					</div>
 				</div>
-
-				<hr />
 
 				<Footer projectName={globalConfig.projectName}/>
 			</div>

@@ -1,0 +1,18 @@
+.AppBody {
+  padding: 0;
+
+  .AppBody-Left {
+    padding: 15px;
+    width: 100%;
+
+    @include respond-to(medium) {
+      flex: 1;
+      width: auto;
+      margin-right: 10px;
+    }
+  }
+
+  @include respond-to(medium) {
+    display: flex;
+  }
+}

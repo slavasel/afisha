@@ -17,8 +17,8 @@ class ResultCard extends React.Component {
 		return (
 			<div key={`col-${this.props.index}`}
 			     class="HorizontalCard"
-			     onMouseOver={() => itemHover(this.props.result._id)}
-			     onMouseOut={() => itemOut(this.props.result._id)}
+			     onMouseEnter={() => itemHover(this.props.result._id)}
+			     onMouseLeave={() => itemOut(this.props.result._id)}
 			>
 				<div class="HorizontalCard-Image">
 					<img src="/static/images/event.jpg" />

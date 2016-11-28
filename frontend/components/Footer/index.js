@@ -5,7 +5,7 @@ class Footer extends React.Component {
 		let year = new Date().getFullYear();
 
 		return (
-			<footer>
+			<footer class="AppFooter">
 				<p>© {year} {this.props.projectName}.</p>
 			</footer>
 		)

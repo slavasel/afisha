@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router'
 
 class Header extends React.Component {
 	render() {
@@ -11,7 +12,7 @@ class Header extends React.Component {
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">{this.props.projectName}</a>
+					<Link className="navbar-brand" to="/">{this.props.projectName}</Link>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<form class="navbar-form navbar-right">

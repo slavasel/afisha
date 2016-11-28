@@ -54,8 +54,8 @@ const handleLable = (text) => {
 }
 
 class MiniMap extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		this.state = {
 			markers: [],

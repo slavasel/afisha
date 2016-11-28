@@ -1,7 +1,8 @@
 import _ from 'lodash';
 
+/* REQUEST AFISHAS */
 export const REQUEST_AFISHAS = 'REQUEST_AFISHAS';
-function requestAfishas() {
+export function requestAfishas() {
 	return {
 		type: REQUEST_AFISHAS
 	}
@@ -38,6 +39,7 @@ export function fetchAfishas(count) {
 	}
 }
 
+/* HOVER AFISHA */
 export const HOVER_ITEM = 'HOVER_ITEM';
 export function hoverItem(id) {
 	return {
@@ -51,5 +53,34 @@ export function hoverOutItem(id) {
 	return {
 		type: HOVER_OUT_ITEM,
 		id: id
+	}
+}
+
+/* REQUEST AFISHA */
+export const REQUEST_AFISHA = 'REQUEST_AFISHA';
+function requestAfisha(id) {
+	return {
+		type: REQUEST_AFISHA,
+		id: id
+	}
+}
+
+export const RECIEVE_AFISHA = 'RECIEVE_AFISHA';
+const recieveAfisha = (id, result) => {
+	return {
+		type: RECIEVE_AFISHA,
+		id: id,
+		afisha: result,
+		receivedAt: Date.now()
+	}
+}
+
+export function fetchAfishaById(id) {
+	return function (dispatch) {
+		dispatch(requestAfisha(id));
+
+		return fetch(`/api/afisha/search/id/${id}`)
+			.then(response => response.json())
+			.then(json => dispatch(recieveAfisha(id, json)))
 	}
 }

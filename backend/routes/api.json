@@ -9,7 +9,7 @@
 	  "route": "search"
 	}
   },
-  "/api/afisha/search/latlon/:lat/:lon": {
+  "/api/afisha/search/bbox/:sw/:ne": {
 	"GET": {
 	  "route": "search"
 	}

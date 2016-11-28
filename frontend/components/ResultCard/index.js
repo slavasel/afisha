@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router'
 
 class ResultCard extends React.Component {
 	constructor() {
@@ -33,13 +34,11 @@ class ResultCard extends React.Component {
 				<p>Место: "{this.props.result.place}"</p>
 
 				<p class="HorizontalCard-Footer">
-					<a key={`event-action-${this.props.index}`}
-					   class="btn btn-default"
-					   href="#"
-					   role="button"
-					>
-						Узнать больше
-					</a>
+					<Link to={`/afisha/${this.props.result._id}`}
+					      key={`event-action-${this.props.index}`}
+					      className="btn btn-default"
+					      role="button"
+					>Узнать больше</Link>
 				</p>
 			</div>
 		);

@@ -28,7 +28,7 @@
     position: absolute;
     bottom: 10px;
 
-    @include respond-to(medium) {
+    @include respond-to(wide) {
       right: 10px;
     }
   }

@@ -16,7 +16,7 @@ class Landing extends React.Component {
 	}
 
 	componentDidMount() {
-		const { dispatch } = this.props;
+		const {dispatch} = this.props;
 		dispatch(fetchAfishas(3));
 	}
 

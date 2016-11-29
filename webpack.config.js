@@ -4,6 +4,7 @@ var path = require('path')
 var webpack = require('webpack')
 var bourbon = require('bourbon');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var SpritesmithPlugin = require('webpack-spritesmith');
 
 module.exports = {
 
@@ -49,6 +50,19 @@ module.exports = {
         }),
         new ExtractTextPlugin("style.css", {
             allChunks: true
+        }),
+        new SpritesmithPlugin({
+            src: {
+                cwd: path.resolve(__dirname, 'static/images/sprite_sources'),
+                glob: '*.png'
+            },
+            target: {
+                image: path.resolve(__dirname, 'static/images/sprite.png'),
+                css: path.resolve(__dirname, 'frontend/styles/base/_sprite.scss')
+            },
+            apiOptions: {
+                cssImageRef: "/static/images/sprite.png"
+            }
         })
     ],
 

@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import { fetchAfishas, fetchAfishaById } from '../../actions'
+import { fetchAfishaById } from '../../actions'
 import globalConfig from '../../globalConfig.json';
-import LastResults from '../../components/LastResults'
+import DetailResult from '../../components/DetailResult'
 
-import '../../styles/landing.scss'
+import '../../styles/detail.scss'
 
 class Detail extends React.Component {
 	constructor(props) {
@@ -42,7 +42,7 @@ class Detail extends React.Component {
 
 				<div class="container AppContainer AppBody">
 					<div class= "main AppBody-Left">
-						{item.name}
+						<DetailResult result={item}/>
 					</div>
 
 					<div class="sidebar AppSidebar">

@@ -1,3 +1,9 @@
 .AppContainer {
   max-width: 1100px;
+
+  .icon-save {
+    display: inline-block;
+    cursor: pointer;
+    @include sprite($icon-save-big);
+  }
 }

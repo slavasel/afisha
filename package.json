@@ -44,8 +44,10 @@
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.1.0",
     "serve-favicon": "^2.3.2",
+    "spritesmith": "^3.1.0",
     "webpack": "^1.13.0",
-    "webpack-dev-middleware": "*"
+    "webpack-dev-middleware": "*",
+    "webpack-spritesmith": "^0.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

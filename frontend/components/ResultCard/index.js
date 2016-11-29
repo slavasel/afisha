@@ -21,6 +21,11 @@ class ResultCard extends React.Component {
 			     onMouseEnter={() => itemHover(this.props.result._id)}
 			     onMouseLeave={() => itemOut(this.props.result._id)}
 			>
+				<Link to={`/afisha/${this.props.result._id}`}
+				      key={`event-action-${this.props.index}`}
+				      className="HorizontalCard-Link"
+				>&nbsp;</Link>
+
 				<div class="HorizontalCard-Image">
 					<img src="/static/images/event.jpg" />
 				</div>
@@ -34,11 +39,11 @@ class ResultCard extends React.Component {
 				<p>Место: "{this.props.result.place}"</p>
 
 				<p class="HorizontalCard-Footer">
-					<Link to={`/afisha/${this.props.result._id}`}
+					<a href="javascript:void(0);"
 					      key={`event-action-${this.props.index}`}
-					      className="btn btn-default"
+					      className="icon-save"
 					      role="button"
-					>Узнать больше</Link>
+					></a>
 				</p>
 			</div>
 		);

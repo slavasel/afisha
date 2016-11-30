@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import localStorageHandler from '../utils/local_storage.js';
 
 /* REQUEST AFISHAS */
 export const REQUEST_AFISHAS = 'REQUEST_AFISHAS';
@@ -9,10 +10,10 @@ export function requestAfishas() {
 }
 
 export const RECIEVE_AFISHAS = 'RECIEVE_AFISHAS';
-const recieveAfishas = (json) => {
+const recieveAfishas = (json, memberId) => {
 	return {
 		type: RECIEVE_AFISHAS,
-		afishas: json,
+		afishas: memberId ? json : localStorageHandler.prepareFavoriteState(json),
 		receivedAt: Date.now()
 	}
 }
@@ -96,6 +97,7 @@ function saveItem(id) {
 
 export const saveItemToFavorites = (id, memberId) => {
 	if (!memberId) {
+		localStorageHandler.addToSaved(id);
 		return saveItem(id);
 	} else {
 		// todo: request
@@ -113,6 +115,7 @@ function unsaveItem(id) {
 
 export const unsaveItemFromFavorites = (id, memberId) => {
 	if (!memberId) {
+		localStorageHandler.removeFromSaved(id);
 		return unsaveItem(id);
 	} else {
 		// todo: request

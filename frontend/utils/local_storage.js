@@ -31,7 +31,7 @@ module.exports = {
 		if (!savedAfishas.length) {
 			return json;
 		}
-		
+
 		Object.keys(json).map(idx => {
 			savedAfishas.map(item => {
 				if (item === idx) {

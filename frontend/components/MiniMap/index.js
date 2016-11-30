@@ -29,12 +29,12 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
 ));
 
 const transformResultToMarker = (result) => {
-	const commonMarkerImage = '../../../static/images/icon-black.png';
-	const selectedMarkerImage = '../../../static/images/icon-red.png';
+	const commonMarkerImage = '../../../static/images/icon-green.png';
+	const selectedMarkerImage = '../../../static/images/icon-pink.png';
 	const image = {
 		url: result.hovered ? selectedMarkerImage : commonMarkerImage,
-		size: new google.maps.Size(55, 55),
-		origin: new google.maps.Point(-12, -15),
+		size: new google.maps.Size(40, 40),
+		origin: new google.maps.Point(0, 0),
 		anchor: new google.maps.Point(0, 0)
 	};
 
@@ -42,7 +42,7 @@ const transformResultToMarker = (result) => {
 		position: result.coords,
 		key: result._id,
 		defaultAnimation: 2,
-		label: handleLable(result.name),
+		//label: handleLable(result.name),
 		icon: image,
 		hovered: false
 	};
@@ -107,7 +107,7 @@ class MiniMap extends React.Component {
 
 	fitBounds(newMarkers) {
 		const bounds = new google.maps.LatLngBounds();
-		newMarkers.map((marker) => {
+		newMarkers.map(marker => {
 			bounds.extend(marker.position);
 		});
 		this._mapComponent.fitBounds(bounds);

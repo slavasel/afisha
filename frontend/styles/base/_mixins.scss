@@ -5,12 +5,12 @@ $wide: 992px;
 
 @mixin respond-to($media) {
   @if $media == small {
-    @media (min-width: $small) { @content; }
+    @media only print, (min-width: $small) { @content; }
   }
   @else if $media == medium {
-    @media (min-width: $medium) { @content; }
+    @media only print, (min-width: $medium) { @content; }
   }
   @else if $media == wide {
-    @media (min-width: $wide) { @content; }
+    @media only print, (min-width: $wide) { @content; }
   }
 }

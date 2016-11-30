@@ -20,6 +20,8 @@ class LastResults extends React.Component {
 							            index={idx}
 							            onItemHover={this.props.onItemHover}
 							            onItemOut={this.props.onItemOut}
+							            saveItem={this.props.saveItem}
+							            unsaveItem={this.props.unsaveItem}
 							/>
 						)
 					})

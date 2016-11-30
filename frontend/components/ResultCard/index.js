@@ -9,11 +9,19 @@ class ResultCard extends React.Component {
 	render() {
 		const itemHover = (id) => {
 			this.props.onItemHover(id);
-		}
+		};
 
 		const itemOut = (id) => {
 			this.props.onItemOut(id);
-		}
+		};
+
+		const saveItem = (id) => {
+			this.props.saveItem(id);
+		};
+
+		const unsaveItem = (id) => {
+			this.props.unsaveItem(id);
+		};
 
 		return (
 			<div key={`col-${this.props.index}`}
@@ -41,8 +49,11 @@ class ResultCard extends React.Component {
 				<p class="HorizontalCard-Footer">
 					<a href="javascript:void(0);"
 					      key={`event-action-${this.props.index}`}
-					      className="icon-save"
+					      className={"icon-save" + (this.props.result.saved ? " saved" : "")}
 					      role="button"
+					      onClick={() => !this.props.result.saved
+						      ? saveItem(this.props.result._id)
+						      : unsaveItem(this.props.result._id)}
 					></a>
 				</p>
 			</div>

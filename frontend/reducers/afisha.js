@@ -1,7 +1,7 @@
 import { RECIEVE_AFISHAS, REQUEST_AFISHAS,
 	HOVER_ITEM, HOVER_OUT_ITEM,
 	REQUEST_AFISHA, RECIEVE_AFISHA,
-	AFISHA_UPDATE_PROPS } from '../actions'
+	SAVE_ITEM, UNSAVE_ITEM} from '../actions'
 
 const initialState = {
 	afishas: {}
@@ -32,12 +32,24 @@ const afisha = (state = initialState, action) => {
 			return newHoverOutState;
 
 		case REQUEST_AFISHA:
-			return state;
+			return Object.assign({}, state);
 
 		case RECIEVE_AFISHA:
 			let updateAfishaState = Object.assign({}, state, { afishas: action.afisha });
 
 			return updateAfishaState;
+
+		case SAVE_ITEM:
+			let newSaveState = Object.assign({}, state);
+			newSaveState.afishas[action.id].saved = true;
+
+			return newSaveState;
+
+		case UNSAVE_ITEM:
+			let newUnsaveState = Object.assign({}, state);
+			newUnsaveState.afishas[action.id].saved = false;
+
+			return newUnsaveState;
 
 		default:
 			return state

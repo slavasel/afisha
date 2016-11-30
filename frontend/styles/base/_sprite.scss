@@ -18,15 +18,26 @@ $icon-save-big-offset-x: 0px;
 $icon-save-big-offset-y: 0px;
 $icon-save-big-width: 30px;
 $icon-save-big-height: 30px;
-$icon-save-big-total-width: 30px;
+$icon-save-big-total-width: 60px;
 $icon-save-big-total-height: 30px;
 $icon-save-big-image: '/static/images/sprite.png';
-$icon-save-big: (0px, 0px, 0px, 0px, 30px, 30px, 30px, 30px, '/static/images/sprite.png', 'icon-save-big', );
-$spritesheet-width: 30px;
+$icon-save-big: (0px, 0px, 0px, 0px, 30px, 30px, 60px, 30px, '/static/images/sprite.png', 'icon-save-big', );
+$icon-saved-big-name: 'icon-saved-big';
+$icon-saved-big-x: 30px;
+$icon-saved-big-y: 0px;
+$icon-saved-big-offset-x: -30px;
+$icon-saved-big-offset-y: 0px;
+$icon-saved-big-width: 30px;
+$icon-saved-big-height: 30px;
+$icon-saved-big-total-width: 60px;
+$icon-saved-big-total-height: 30px;
+$icon-saved-big-image: '/static/images/sprite.png';
+$icon-saved-big: (30px, 0px, -30px, 0px, 30px, 30px, 60px, 30px, '/static/images/sprite.png', 'icon-saved-big', );
+$spritesheet-width: 60px;
 $spritesheet-height: 30px;
 $spritesheet-image: '/static/images/sprite.png';
-$spritesheet-sprites: ($icon-save-big, );
-$spritesheet: (30px, 30px, '/static/images/sprite.png', $spritesheet-sprites, );
+$spritesheet-sprites: ($icon-save-big, $icon-saved-big, );
+$spritesheet: (60px, 30px, '/static/images/sprite.png', $spritesheet-sprites, );
 
 /*
 The provided mixins are intended to be used with the array-like variables

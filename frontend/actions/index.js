@@ -84,3 +84,37 @@ export function fetchAfishaById(id) {
 			.then(json => dispatch(recieveAfisha(id, json)))
 	}
 }
+
+/* Save item */
+export const SAVE_ITEM = 'SAVE_ITEM';
+function saveItem(id) {
+	return {
+		type: SAVE_ITEM,
+		id: id
+	}
+}
+
+export const saveItemToFavorites = (id, memberId) => {
+	if (!memberId) {
+		return saveItem(id);
+	} else {
+		// todo: request
+	}
+}
+
+/* Unsave item */
+export const UNSAVE_ITEM = 'UNSAVE_ITEM';
+function unsaveItem(id) {
+	return {
+		type: UNSAVE_ITEM,
+		id: id
+	}
+}
+
+export const unsaveItemFromFavorites = (id, memberId) => {
+	if (!memberId) {
+		return unsaveItem(id);
+	} else {
+		// todo: request
+	}
+}

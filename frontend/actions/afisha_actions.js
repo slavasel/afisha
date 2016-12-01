@@ -18,13 +18,11 @@ const recieveAfishas = (json, memberId) => {
 	}
 }
 
-export function fetchAfishas(count) {
+export function fetchAfishas(params) {
 	return function (dispatch) {
 		dispatch(requestAfishas());
 
-		let uriParams = _.transform({
-			count: count
-		}, (res, v, k) => {
+		let uriParams = _.transform(params, (res, v, k) => {
 			if (v) res[k] = v;
 		});
 

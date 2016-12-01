@@ -9,9 +9,13 @@ exports.search = function(req, res, next) {
 		"use strict";
 
 		const limit = req.query.count ? parseInt(req.query.count) : 200;
+		const sortValue = {};
+		if (typeof req.query.nearest !== 'undefined') {
+			sortValue.startTime = 'asc';
+		}
 		let conditions = prepareConditions(req.params);
 
-		afishaModel.find(conditions).limit(limit).exec(function (err, afisha) {
+		afishaModel.find(conditions).limit(limit).sort(sortValue).exec(function (err, afisha) {
 			if (err) {
 				return res.send({message: 'error', err: err});
 			}
@@ -29,18 +33,32 @@ exports.search = function(req, res, next) {
 
 exports.add = function(req, res, next) {
 	db.start(() => {
-		var cityEvent = new afishaModel({ name: 'AC/DC', place: 'Planeta Kino', coords: {lat: 50, lng: 30}, image: '' });
+		"use strict";
+
 		if (req.params.name) {
-			cityEvent = new afishaModel({ name: req.params.name, place: req.params.place, coords: {lat: req.params.lat, lng: req.params.lng}, image: '' });
+			let params = {
+				name: req.params.name,
+				place: req.params.place,
+				coords: {lat: req.params.lat, lng: req.params.lng},
+				image: ''
+			};
+
+			if (req.params.startTime) {
+				const startTime = req.params.startTime.split('-');
+				params.startTime = new Date(startTime[0], startTime[1], startTime[2], startTime[3], startTime[4]);
+			}
+
+			const cityEvent = new afishaModel(params);
+
+			cityEvent.save(function (err, ev) {
+				if (err) {
+					return res.send({message: 'error', err: err});
+				}
+				res.send({message: 'ok'});
+				db.close();
+			});
 		}
 
-		cityEvent.save(function (err, ev) {
-			if (err) {
-				return res.send({message: 'error', err: err});
-			}
-			res.send({message: 'ok'});
-			db.close();
-		});
 	})
 };
 

@@ -21,7 +21,7 @@ class Landing extends React.Component {
 
 	componentDidMount() {
 		const {dispatch} = this.props;
-		dispatch(fetchAfishas(3));
+		dispatch(fetchAfishas({count: 3, nearest: true}));
 		dispatch(getFavCount());
 	}
 

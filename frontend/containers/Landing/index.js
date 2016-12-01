@@ -8,7 +8,8 @@ import MiniMap from '../../components/MiniMap'
 import { fetchAfishas,
 		  hoverItem, hoverOutItem,
 		  saveItemToFavorites, unsaveItemFromFavorites
-} from '../../actions'
+} from '../../actions/afisha_actions.js'
+import { getFavCount, increaseFavCount, decreaseFavCount } from '../../actions/fav_counter_actions.js'
 import globalConfig from '../../globalConfig.json';
 
 import '../../styles/landing.scss'
@@ -21,6 +22,7 @@ class Landing extends React.Component {
 	componentDidMount() {
 		const {dispatch} = this.props;
 		dispatch(fetchAfishas(3));
+		dispatch(getFavCount());
 	}
 
 	onItemHover(id) {
@@ -38,12 +40,14 @@ class Landing extends React.Component {
 	saveItem(id) {
 		const { dispatch } = this.props;
 		dispatch(saveItemToFavorites(id));
+		dispatch(increaseFavCount());
 		this.forceUpdate();
 	}
 
 	unsaveItem(id) {
 		const { dispatch } = this.props;
 		dispatch(unsaveItemFromFavorites(id));
+		dispatch(decreaseFavCount());
 		this.forceUpdate();
 	}
 
@@ -52,7 +56,9 @@ class Landing extends React.Component {
 			<div>
 				<nav class="navbar navbar-inverse navbar-fixed-top">
 					<div class="AppContainer container">
-						<Header projectName={globalConfig.projectName} />
+						<Header
+							favCounter={this.props.fav_counter}
+							projectName={globalConfig.projectName} />
 					</div>
 				</nav>
 
@@ -81,6 +87,7 @@ class Landing extends React.Component {
 const mapStateToProps = state => {
 	return {
 		afishas: state.afisha.afishas,
+		fav_counter: state.fav_counter.counter,
 	}
 };
 

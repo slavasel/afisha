@@ -23,7 +23,7 @@ module.exports = {
 		localStorage.setItem('savedAfishas', JSON.stringify(savedAfishas));
 	},
 
-	prepareFavoriteState(json) {
+	prepareFavoriteState: (json) => {
 		const savedAfishas = localStorage.getItem('savedAfishas')
 			? JSON.parse(localStorage.getItem('savedAfishas'))
 			: [];
@@ -41,5 +41,13 @@ module.exports = {
 		});
 
 		return json;
+	},
+
+	getFavCount: () => {
+		const savedAfishas = localStorage.getItem('savedAfishas')
+			? JSON.parse(localStorage.getItem('savedAfishas'))
+			: [];
+
+		return savedAfishas.length;
 	}
 }

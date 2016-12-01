@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import { fetchAfishaById } from '../../actions'
+import { fetchAfishaById } from '../../actions/afisha_actions.js'
 import globalConfig from '../../globalConfig.json';
 import DetailResult from '../../components/DetailResult'
 

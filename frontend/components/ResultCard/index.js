@@ -49,7 +49,7 @@ class ResultCard extends React.Component {
 				<p class="HorizontalCard-Footer">
 					<a href="javascript:void(0);"
 					      key={`event-action-${this.props.index}`}
-					      className={"icon-save" + (this.props.result.saved ? " saved" : "")}
+					      className={"icon icon-save" + (this.props.result.saved ? " saved" : "")}
 					      role="button"
 					      onClick={() => !this.props.result.saved
 						      ? saveItem(this.props.result._id)

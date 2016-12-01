@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 class Header extends React.Component {
 	render() {
 		return (
-			<div>
+			<div class="AppTop">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 						<span class="sr-only">Toggle navigation</span>
@@ -12,10 +12,17 @@ class Header extends React.Component {
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
+					<div class="AppTop-FavCounter">
+						<div class="icon icon-white"></div>
+						<span class="AppTop-FavCounterValue">{this.props.favCounter}</span>
+					</div>
+
 					<Link className="navbar-brand" to="/">{this.props.projectName}</Link>
+					<div id="navbar" class="navbar-collapse collapse">
 				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<form class="navbar-form navbar-right">
+
+
+					{/*<form class="navbar-form navbar-right">
 						<div class="form-group">
 							<input type="text" placeholder="Email" class="form-control" />
 						</div>
@@ -23,7 +30,7 @@ class Header extends React.Component {
 							<input type="password" placeholder="Password" class="form-control" />
 						</div>
 						<button type="submit" class="btn btn-success">Sign in</button>
-					</form>
+					</form>*/}
 				</div>
 			</div>
 		)

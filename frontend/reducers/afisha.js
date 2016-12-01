@@ -1,7 +1,7 @@
 import { RECIEVE_AFISHAS, REQUEST_AFISHAS,
 	HOVER_ITEM, HOVER_OUT_ITEM,
 	REQUEST_AFISHA, RECIEVE_AFISHA,
-	SAVE_ITEM, UNSAVE_ITEM} from '../actions'
+	SAVE_ITEM, UNSAVE_ITEM} from '../actions/afisha_actions.js'
 
 const initialState = {
 	afishas: {}

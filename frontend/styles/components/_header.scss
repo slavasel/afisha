@@ -8,6 +8,26 @@
     text-align: center;
   }
 
+  .AppHeader-hearts {
+    position: relative;
+    float: right;
+    top: -125px;
+    right: -10px;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+
+    .icon {
+      position: absolute;
+
+      @for $i from 1 through 3 {
+        &:nth-child(#{$i}) {
+          top: calc(#{$i} * 20px);
+          right: calc(#{$i} * 20px);
+        }
+      }
+    }
+  }
+
   @include respond-to(medium) {
     margin-top: 60px;
     height: 250px;

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { fetchAfishaById } from '../../actions/afisha_actions.js'
+import { getFavCount, increaseFavCount, decreaseFavCount } from '../../actions/fav_counter_actions.js'
 import globalConfig from '../../globalConfig.json';
 import DetailResult from '../../components/DetailResult'
 
@@ -18,10 +19,10 @@ class Detail extends React.Component {
 	}
 
 	componentDidMount() {
-		if (!this.props.afishas[this.state.id]) {
-			console.log('New afisha render');
+		const { dispatch } = this.props;
+		dispatch(getFavCount());
 
-			const { dispatch } = this.props;
+		if (!this.props.afishas[this.state.id]) {
 			dispatch(fetchAfishaById(this.state.id));
 		}
 	}
@@ -36,7 +37,8 @@ class Detail extends React.Component {
 			<div>
 				<nav class="navbar navbar-inverse navbar-fixed-top">
 					<div class="AppContainer container">
-						<Header projectName={globalConfig.projectName} />
+						<Header favCounter={this.props.fav_counter}
+						        projectName={globalConfig.projectName} />
 					</div>
 				</nav>
 
@@ -60,6 +62,7 @@ class Detail extends React.Component {
 const mapStateToProps = state => {
 	return {
 		afishas: state.afisha.afishas,
+		fav_counter: state.fav_counter.counter
 	}
 };
 

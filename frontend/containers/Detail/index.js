@@ -40,6 +40,7 @@ class Detail extends React.Component {
 					</div>
 				</nav>
 
+				<div class="marginHeader"></div>
 				<div class="container AppContainer AppBody">
 					<div class= "main AppBody-Left">
 						<DetailResult result={item}/>

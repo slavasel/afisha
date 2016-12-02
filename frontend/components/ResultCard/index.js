@@ -32,7 +32,7 @@ class ResultCard extends React.Component {
 				<Link to={`/afisha/${this.props.result._id}`}
 				      key={`event-action-${this.props.index}`}
 				      className="HorizontalCard-Link"
-				>&nbsp;</Link>
+				></Link>
 
 				<div class="HorizontalCard-Image">
 					<img src="/static/images/event.jpg" />

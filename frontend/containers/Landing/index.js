@@ -66,6 +66,7 @@ class Landing extends React.Component {
 
 				<div class="container AppContainer AppBody">
 					<div class= "main AppBody-Left">
+						<h3 className="HeadingH3">Ближайшие мероприятия</h3>
 						<LastResults onItemHover={(id) => this.onItemHover.bind(this)(id)}
 						             onItemOut={(id) => this.onItemOut.bind(this)(id)}
 						             saveItem={(id) => this.saveItem.bind(this)(id)}

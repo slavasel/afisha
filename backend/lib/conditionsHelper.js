@@ -5,7 +5,7 @@ module.exports = {
 		let conditions = {};
 
 		if (params.id) {
-			conditions._id = params.id;
+			conditions._id =  { $in: params.id.split(',') }
 		}
 
 		return conditions;

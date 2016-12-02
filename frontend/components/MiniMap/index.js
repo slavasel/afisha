@@ -159,7 +159,7 @@ class MiniMap extends React.Component {
 
 	render() {
 		return (
-			<div style={{height: `100%`}}>
+			<div class="AppMiniMap" style={{height: `100%`}}>
 				<Helmet
 					title="Getting Started"
 				/>

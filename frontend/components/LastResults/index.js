@@ -12,7 +12,7 @@ class LastResults extends React.Component {
 		}
 
 		return (
-			<div class="row">
+			<div class="row" id="results">
 				{Object.keys(this.props.results).map((idx) => {
 						return (
 							<ResultCard result={this.props.results[idx]}

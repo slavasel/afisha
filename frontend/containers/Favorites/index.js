@@ -21,7 +21,7 @@ class Favorites extends React.Component {
 		this.state = {
 			ids: '',
 			startIndex: 0,
-			limit: 2
+			limit: 3
 		};
 
 		if (!window.memberId) {
@@ -41,6 +41,12 @@ class Favorites extends React.Component {
 				}
 			));
 		}
+
+		window.addEventListener('scroll', this.scrollSidebar);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.scrollSidebar);
 	}
 
 	onItemHover(id) {
@@ -82,6 +88,20 @@ class Favorites extends React.Component {
 		));
 	}
 
+	scrollSidebar(event) {
+		const miniMap = document.getElementById('miniMap'),
+			results = document.getElementById('results'),
+			maxScroll = results.offsetHeight + results.offsetTop - miniMap.offsetHeight,
+			staticHeaderMargin = 70;
+
+		let scrollTop = event.srcElement.body.scrollTop;
+
+		if (maxScroll > scrollTop + staticHeaderMargin) {
+			miniMap.style.top = (scrollTop + staticHeaderMargin) + 'px';
+			miniMap.style.position = 'absolute';
+		}
+	}
+
 	render() {
 
 		return (
@@ -119,7 +139,7 @@ class Favorites extends React.Component {
 					</div>
 				</div>
 
-				<Footer projectName={globalConfig.projectName}/>
+				<Footer projectName={globalConfig.projectName} />
 			</div>
 		);
 	}

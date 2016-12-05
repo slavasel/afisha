@@ -1,5 +1,8 @@
 .AppMiniMap {
   display: none;
+  height: 500px;
+  width: 300px;
+  position: relative;
 
   @include respond-to(medium) {
     display: block;

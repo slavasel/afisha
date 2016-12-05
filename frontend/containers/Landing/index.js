@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Jumbotron from '../../components/Jumbotron'
+import SearchBox from '../../components/SearchBox'
 import LastResults from '../../components/LastResults'
 import MiniMap from '../../components/MiniMap'
 import { fetchAfishas,
@@ -63,6 +64,8 @@ class Landing extends React.Component {
 				</nav>
 
 				<Jumbotron />
+
+				<SearchBox />
 
 				<div class="container AppContainer AppBody">
 					<div class= "main AppBody-Left">

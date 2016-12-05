@@ -49,5 +49,13 @@ module.exports = {
 			: [];
 
 		return savedAfishas.length;
+	},
+
+	getFavorites: () => {
+		const savedAfishas = localStorage.getItem('savedAfishas')
+			? JSON.parse(localStorage.getItem('savedAfishas'))
+			: [];
+
+		return savedAfishas;
 	}
 }

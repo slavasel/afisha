@@ -9,13 +9,14 @@ exports.search = function(req, res, next) {
 		"use strict";
 
 		const limit = req.query.count ? parseInt(req.query.count) : 200;
+		const skip = req.query.startIndex ? parseInt(req.query.startIndex) : 0;
 		const sortValue = {};
 		if (typeof req.query.nearest !== 'undefined') {
 			sortValue.startTime = 'asc';
 		}
 		let conditions = prepareConditions(req.params);
 
-		afishaModel.find(conditions).limit(limit).sort(sortValue).exec(function (err, afisha) {
+		afishaModel.find(conditions).limit(limit).skip(skip).sort(sortValue).exec(function (err, afisha) {
 			if (err) {
 				return res.send({message: 'error', err: err});
 			}
@@ -25,8 +26,11 @@ exports.search = function(req, res, next) {
 				returnData[item._id] = item;
 			});
 
-			res.send(returnData);
-			db.close();
+			// return total results value for pagination
+			afishaModel.find(conditions).count('_id').exec((err, count) => {
+				res.send({results: returnData, totalResults: count});
+				db.close();
+			});
 		});
 	})
 };

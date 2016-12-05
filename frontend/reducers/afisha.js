@@ -1,7 +1,7 @@
 import { RECIEVE_AFISHAS, REQUEST_AFISHAS,
 	HOVER_ITEM, HOVER_OUT_ITEM,
 	REQUEST_AFISHA, RECIEVE_AFISHA,
-	SAVE_ITEM, UNSAVE_ITEM} from '../actions/afisha_actions.js'
+	SAVE_ITEM, UNSAVE_ITEM, DELETE_ITEM} from '../actions/afisha_actions.js'
 
 const initialState = {
 	afishas: {}
@@ -16,7 +16,8 @@ const afisha = (state = initialState, action) => {
 
 		case RECIEVE_AFISHAS:
 			return Object.assign({}, state, {
-				afishas: action.afishas
+				afishas: action.afishas,
+				totalResults: action.totalResults
 			});
 
 		case HOVER_ITEM:
@@ -35,7 +36,7 @@ const afisha = (state = initialState, action) => {
 			return Object.assign({}, state);
 
 		case RECIEVE_AFISHA:
-			let updateAfishaState = Object.assign({}, state, { afishas: action.afisha });
+			let updateAfishaState = Object.assign({}, state, { afishas: action.afisha, totalResults: action.totalResults });
 
 			return updateAfishaState;
 
@@ -50,6 +51,12 @@ const afisha = (state = initialState, action) => {
 			newUnsaveState.afishas[action.id].saved = false;
 
 			return newUnsaveState;
+
+		case DELETE_ITEM:
+			let newDeleteState = Object.assign({}, state);
+			delete newDeleteState.afishas[action.id];
+
+			return newDeleteState;
 
 		default:
 			return state

@@ -13,7 +13,9 @@ class Header extends React.Component {
 						<span class="icon-bar"></span>
 					</button>
 					<div class="AppTop-FavCounter">
-						<div class="icon icon-white"></div>
+						<Link to="/favorites">
+							<span class="icon icon-white"></span>
+						</Link>
 						<span class="AppTop-FavCounterValue">{this.props.favCounter}</span>
 					</div>
 

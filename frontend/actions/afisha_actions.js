@@ -1,5 +1,5 @@
-import _ from 'lodash';
 import localStorageHandler from '../utils/local_storage.js';
+import uriHelper from '../utils/uri.js';
 
 /* REQUEST AFISHAS */
 export const REQUEST_AFISHAS = 'REQUEST_AFISHAS';
@@ -10,10 +10,11 @@ export function requestAfishas() {
 }
 
 export const RECIEVE_AFISHAS = 'RECIEVE_AFISHAS';
-const recieveAfishas = (json, memberId) => {
+const recieveAfishas = (json) => {
 	return {
 		type: RECIEVE_AFISHAS,
-		afishas: memberId ? json : localStorageHandler.prepareFavoriteState(json),
+		afishas: window.memberId ? json.results : localStorageHandler.prepareFavoriteState(json.results),
+		totalResults: json.totalResults,
 		receivedAt: Date.now()
 	}
 }
@@ -22,13 +23,7 @@ export function fetchAfishas(params) {
 	return function (dispatch) {
 		dispatch(requestAfishas());
 
-		let uriParams = _.transform(params, (res, v, k) => {
-			if (v) res[k] = v;
-		});
-
-		const uriParamsReady = Object.keys(uriParams).map(function(key) {
-			return key + '=' + uriParams[key];
-		}).join('&');
+		const uriParamsReady = uriHelper.getUriFromParams(params);
 
 		return fetch(`/api/afisha/search?${uriParamsReady}`)
 			.then(response => response.json())
@@ -65,20 +60,23 @@ function requestAfisha(id) {
 }
 
 export const RECIEVE_AFISHA = 'RECIEVE_AFISHA';
-const recieveAfisha = (id, result) => {
+const recieveAfisha = (id, json) => {
 	return {
 		type: RECIEVE_AFISHA,
 		id: id,
-		afisha: result,
+		totalResults: json.totalResults,
+		afisha: window.memberId ? json.results : localStorageHandler.prepareFavoriteState(json.results),
 		receivedAt: Date.now()
 	}
 }
 
-export function fetchAfishaById(id) {
+export function fetchAfishaById(id, params) {
 	return function (dispatch) {
 		dispatch(requestAfisha(id));
 
-		return fetch(`/api/afisha/search/id/${id}`)
+		const uriParamsReady = uriHelper.getUriFromParams(params);
+
+		return fetch(`/api/afisha/search/id/${id}?${uriParamsReady}`)
 			.then(response => response.json())
 			.then(json => dispatch(recieveAfisha(id, json)))
 	}
@@ -111,10 +109,28 @@ function unsaveItem(id) {
 	}
 }
 
-export const unsaveItemFromFavorites = (id, memberId) => {
-	if (!memberId) {
+export const unsaveItemFromFavorites = (id) => {
+	if (!window.memberId) {
 		localStorageHandler.removeFromSaved(id);
 		return unsaveItem(id);
+	} else {
+		// todo: request
+	}
+};
+
+/* Delete item */
+export const DELETE_ITEM = 'DELETE_ITEM';
+function deleteItem(id) {
+	return {
+		type: DELETE_ITEM,
+		id: id
+	}
+}
+
+export const deleteItemFromFavorites = (id) => {
+	if (!window.memberId) {
+		localStorageHandler.removeFromSaved(id);
+		return deleteItem(id);
 	} else {
 		// todo: request
 	}

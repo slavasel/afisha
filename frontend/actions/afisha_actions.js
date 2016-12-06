@@ -33,6 +33,18 @@ export function fetchAfishas(params) {
 	}
 }
 
+export function fetchAfishaById(id, params) {
+	return function (dispatch) {
+		dispatch(requestAfishas());
+
+		const uriParamsReady = uriHelper.getUriFromParams(params);
+
+		return fetch(`/api/afisha/search/id/${id}?${uriParamsReady}`)
+			.then(response => response.json())
+			.then(json => dispatch(recieveAfishas(json)))
+	}
+}
+
 /* HOVER AFISHA */
 export const HOVER_ITEM = 'HOVER_ITEM';
 export function hoverItem(id) {
@@ -47,38 +59,6 @@ export function hoverOutItem(id) {
 	return {
 		type: HOVER_OUT_ITEM,
 		id: id
-	}
-}
-
-/* REQUEST AFISHA */
-export const REQUEST_AFISHA = 'REQUEST_AFISHA';
-function requestAfisha(id) {
-	return {
-		type: REQUEST_AFISHA,
-		id: id
-	}
-}
-
-export const RECIEVE_AFISHA = 'RECIEVE_AFISHA';
-const recieveAfisha = (id, json) => {
-	return {
-		type: RECIEVE_AFISHA,
-		id: id,
-		totalResults: json.totalResults,
-		afisha: window.memberId ? json.results : localStorageHandler.prepareFavoriteState(json.results),
-		receivedAt: Date.now()
-	}
-}
-
-export function fetchAfishaById(id, params) {
-	return function (dispatch) {
-		dispatch(requestAfisha(id));
-
-		const uriParamsReady = uriHelper.getUriFromParams(params);
-
-		return fetch(`/api/afisha/search/id/${id}?${uriParamsReady}`)
-			.then(response => response.json())
-			.then(json => dispatch(recieveAfisha(id, json)))
 	}
 }
 

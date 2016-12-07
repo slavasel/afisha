@@ -26,18 +26,6 @@ class Landing extends React.Component {
 		dispatch(getFavCount());
 	}
 
-	onItemHover(id) {
-		const { dispatch } = this.props;
-		dispatch(hoverItem(id));
-		this.forceUpdate();
-	}
-
-	onItemOut(id) {
-		const { dispatch } = this.props;
-		dispatch(hoverOutItem(id));
-		this.forceUpdate();
-	}
-
 	saveItem(id) {
 		const { dispatch } = this.props;
 		dispatch(saveItemToFavorites(id));
@@ -70,15 +58,13 @@ class Landing extends React.Component {
 				<div class="container AppContainer AppBody">
 					<div class= "main AppBody-Left">
 						<h3 className="HeadingH3">Ближайшие мероприятия</h3>
-						<LastResults onItemHover={(id) => this.onItemHover.bind(this)(id)}
-						             onItemOut={(id) => this.onItemOut.bind(this)(id)}
+						<LastResults onItemHover={(id) => {}}
+						             onItemOut={(id) => {}}
 						             saveItem={(id) => this.saveItem.bind(this)(id)}
 						             unsaveItem={(id) => this.unsaveItem.bind(this)(id)}
-						             results={this.props.afishas}/>
-					</div>
-
-					<div class="sidebar AppSidebar">
-						<MiniMap results={this.props.afishas} />
+						             results={this.props.afishas}
+						             layout="Vertical"
+						/>
 					</div>
 				</div>
 

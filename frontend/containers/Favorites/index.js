@@ -129,7 +129,9 @@ class Favorites extends React.Component {
 								                goNextPage: this.goNextPage.bind(this),
 								                goPrevPage: this.goPrevPage.bind(this)
 							                }}
-							                results={this.props.afishas}/>)
+							                results={this.props.afishas}
+							                layout="Horizontal"
+								/>)
 							: (<span>К сожалению, у Вас нет сохраненных мероприятий/заведений.</span>)
 						}
 					</div>

@@ -69,5 +69,7 @@
 }
 
 .LayoutVertical {
-  margin: 0px -40px 0 -10px;
+  @include respond-to(medium) {
+    margin: 0px -40px 0 -10px;
+  }
 }

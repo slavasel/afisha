@@ -18,5 +18,10 @@
 	"GET": {
 	  "route": "index"
 	}
+  },
+  "/search": {
+	"GET": {
+	  "route": "index"
+	}
   }
 }

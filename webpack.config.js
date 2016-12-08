@@ -32,8 +32,7 @@ module.exports = {
             test: /\.html$/,
             loader: 'file?name=[path][name].[ext]&context=./src/main',
         }, {
-            test: /\.scss$/,
-            //loader: `style!css!sass?includePaths[]=${bourbon.includePaths}`,
+            test: /\.s?css$/,
             loader: ExtractTextPlugin.extract(("style-loader", "css-loader!sass-loader")),
         }, {
             test: /\.(png|jpg|woff|ttf|woff2)$/,

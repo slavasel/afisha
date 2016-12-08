@@ -21,7 +21,7 @@ class Favorites extends React.Component {
 		this.state = {
 			ids: '',
 			startIndex: 0,
-			limit: 3
+			limit: 2
 		};
 
 		if (!window.memberId) {

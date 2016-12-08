@@ -5,9 +5,7 @@ import Footer from '../../components/Footer'
 import Jumbotron from '../../components/Jumbotron'
 import SearchBox from '../../components/SearchBox'
 import LastResults from '../../components/LastResults'
-import MiniMap from '../../components/MiniMap'
 import { fetchAfishas,
-		  hoverItem, hoverOutItem,
 		  saveItemToFavorites, unsaveItemFromFavorites
 } from '../../actions/afisha_actions.js'
 import { getFavCount, increaseFavCount, decreaseFavCount } from '../../actions/fav_counter_actions.js'

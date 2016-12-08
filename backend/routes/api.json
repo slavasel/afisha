@@ -9,7 +9,12 @@
 	  "route": "search"
 	}
   },
-  "/api/afisha/search/bbox/:sw/:ne": {
+  "/api/afisha/search/bbox/:sw/:ne/:start/:finish": {
+	"GET": {
+	  "route": "search"
+	}
+  },
+  "/api/afisha/search/common/:start/:finish": {
 	"GET": {
 	  "route": "search"
 	}

@@ -21,7 +21,7 @@ const _prepareData = (data) => {
 
 module.exports = {
 	createLinkFromParams: (formData) => {
-		let link = '/search';
+		let link = '';
 
 		const preparedData = _prepareData(formData);
 		Object.keys(preparedData).sort().map((idx) => {

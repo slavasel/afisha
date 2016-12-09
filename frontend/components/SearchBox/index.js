@@ -32,7 +32,7 @@ class SearchBox extends React.Component {
 
 	updateLink(event) {
 		event.preventDefault();
-		const searchLink = linkBuilder.createLinkFromParams(this.state.formData);
+		const searchLink = '/search' + linkBuilder.createLinkFromParams(this.state.formData);
 		browserHistory.push(searchLink);
 	}
 

@@ -19,11 +19,11 @@ const recieveAfishas = (json) => {
 	}
 }
 
-export function fetchAfishas(params) {
+export function fetchAfishas(queryParams, params) {
 	return function (dispatch) {
 		dispatch(requestAfishas());
 
-		const uriParamsReady = uriHelper.getUriFromParams(params);
+		const uriParamsReady = uriHelper.getUriFromParams(queryParams);
 
 		return fetch(`/api/afisha/search?${uriParamsReady}`)
 			.then(response => response.json())

@@ -81,12 +81,14 @@ const DateRange = React.createClass({
 			startOpen: false,
 			endOpen: true,
 		});
+		this.props.onChange({startDate: value[0]});
 	},
 
 	onEndChange(value) {
 		this.setState({
 			endValue: value[1],
 		});
+		this.props.onChange({endDate: value[1]});
 	},
 
 	disabledStartDate(endValue) {

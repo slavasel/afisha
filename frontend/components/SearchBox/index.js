@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router'
+import { browserHistory } from 'react-router'
+import update from 'react-addons-update';
 import DateRange from '../../components/DateRange'
+import linkBuilder from '../../utils/linkBuilder'
 
-class Header extends React.Component {
+class SearchBox extends React.Component {
 	constructor() {
 		super();
 		this.state = {
 			showAdditional: false,
+			formData: {}
 		}
 	}
 
@@ -14,17 +17,52 @@ class Header extends React.Component {
 		this.setState({showAdditional: !this.state.showAdditional});
 	}
 
+	handleChange(event, data) {
+		let updatedFormData = this.state.formData;
+		if (event) {
+			const fieldName = event.target.name;
+			const fieldValue = event.target.value;
+			updatedFormData = update(this.state.formData, {$merge: {[fieldName]: fieldValue} });
+		} else {
+			updatedFormData = update(this.state.formData, {$merge: data});
+		}
+
+		this.setState({formData: updatedFormData});
+	}
+
+	updateLink(event) {
+		event.preventDefault();
+		const searchLink = linkBuilder.createLinkFromParams(this.state.formData);
+		browserHistory.push(searchLink);
+	}
+
 	render() {
 		return (
 			<div class="AppSearch AppContainer container">
 				<form>
-					<input id="search" class="SearchLine" type="text" placeholder='Все события и места'/>
-					<button className="SearchButton btn btn-success">Искать</button>
+					<input
+						id="search"
+						name="search"
+						class="SearchLine"
+						type="text"
+						placeholder='Все события и места'
+					    onChange={this.handleChange.bind(this)}
+					    defaultValue={this.state.formData.search}
+					/>
+
+					<input type="submit"
+					      className="SearchButton btn btn-success"
+					      onClick={(event) => this.updateLink.bind(this)(event)}
+					      value="Искать"
+					/>
 
 					{this.state.showAdditional
 						? (
 						<div className="AppSearch-Additional">
-							<DateRange />
+							<DateRange
+								onChange={(data) => this.handleChange.bind(this)(null, data)}
+							    timeData={this.state.formData.startDate}
+							/>
 						</div>
 						)
 						: null
@@ -41,4 +79,4 @@ class Header extends React.Component {
 	}
 }
 
-module.exports = Header;
+module.exports = SearchBox;

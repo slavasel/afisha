@@ -14,7 +14,6 @@ class ResultCard extends React.Component {
 
 	render() {
 		const CardComponent = cardMap[this.props.layout];
-		console.log(this.props.layout);
 		return (
 			<CardComponent {...this.props}/>
 		);

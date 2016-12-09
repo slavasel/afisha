@@ -29,7 +29,7 @@ class VerticalCard extends React.Component {
 			     onMouseEnter={() => itemHover(this.props.result._id)}
 			     onMouseLeave={() => itemOut(this.props.result._id)}
 			>
-				<Link to={`/afisha/${this.props.result._id}`}
+				<Link to={`/detail/${this.props.result._id}`}
 				      key={`event-action-${this.props.index}`}
 				      className="HorizontalCard-Link"
 				></Link>

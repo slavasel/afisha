@@ -4,22 +4,17 @@
 	  "route": "index"
 	}
   },
-  "/afisha": {
+  "/detail/*": {
 	"GET": {
 	  "route": "index"
 	}
   },
-  "/afisha/*": {
+  "/search/*": {
 	"GET": {
 	  "route": "index"
 	}
   },
   "/favorites": {
-	"GET": {
-	  "route": "index"
-	}
-  },
-  "/search": {
 	"GET": {
 	  "route": "index"
 	}

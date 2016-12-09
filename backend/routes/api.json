@@ -4,22 +4,22 @@
 	  "route": "search"
 	}
   },
+  "/api/afisha/search/:startDate/:endDate/:search": {
+	"GET": {
+	  "route": "search"
+	}
+  },
   "/api/afisha/search/id/:id": {
 	"GET": {
 	  "route": "search"
 	}
   },
-  "/api/afisha/search/bbox/:sw/:ne/:start/:finish": {
+  "/api/afisha/search/bbox/:sw/:ne/:startDate/:endDate/:search": {
 	"GET": {
 	  "route": "search"
 	}
   },
-  "/api/afisha/search/common/:start/:finish": {
-	"GET": {
-	  "route": "search"
-	}
-  },
-  "/api/afisha/add/:name/:place/:lat/:lng/:startTime": {
+  "/api/afisha/add/:name/:place/:lat/:lng/:startDate/:endDate/:search": {
 	"GET": {
 	  "route": "add"
 	}

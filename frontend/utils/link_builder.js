@@ -9,7 +9,7 @@ const _prepareData = (data) => {
 	if (data.startDate && data.endDate) {
 		preparedData.dates = `${data.startDate.format(format)}.${data.endDate.format(format)}`
 	} else if (data.startDate) {
-		preparedData.dates = `${data.startDate.format(format)}.max`
+		preparedData.dates = `${data.startDate.format(format)}.${moment().add(1, 'year').format(format)}`
 	} else if (data.endDate) {
 		preparedData.dates = `${moment().format(format)}.${data.endDate.format(format)}`
 	}
@@ -23,9 +23,29 @@ module.exports = {
 	createLinkFromParams: (formData) => {
 		let link = '';
 
-		const preparedData = _prepareData(formData);
+		const preparedData = _.transform(_prepareData(formData), (res, v, k) => {
+			if (v || v === 0) res[k] = v;
+		});
 		Object.keys(preparedData).sort().map((idx) => {
 			link += `/${idx}-${preparedData[idx]}`
+		});
+
+		return link;
+	},
+
+	createApiParams: (formData) => {
+		let link = '';
+
+		let apiParams = {};
+		// todo: additional specific route + params (i.e. bbox)
+		apiParams = Object.assign(apiParams, _.defaults(formData, {
+			startDate: '-',
+			endDate: '-',
+			search: '-'
+		}));
+
+		Object.keys(apiParams).map((idx) => {
+			link += `/${apiParams[idx]}`
 		});
 
 		return link;

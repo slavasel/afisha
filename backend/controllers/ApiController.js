@@ -1,7 +1,7 @@
 var db = require('../lib/db.js'),
 	mongoose = require('mongoose'),
 	afishaSchema = require('../lib/schemas/afisha.js'),
-	afishaModel = mongoose.model('Afisha', afishaSchema)
+	afishaModel = mongoose.model('Afisha', afishaSchema),
 	prepareConditions = require('../lib/conditionsHelper.js').prepareConditions;
 
 exports.search = function(req, res, next) {

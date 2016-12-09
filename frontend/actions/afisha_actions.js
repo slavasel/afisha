@@ -1,5 +1,6 @@
 import localStorageHandler from '../utils/local_storage.js';
 import uriHelper from '../utils/uri.js';
+import linkBuilder from '../utils/link_builder.js';
 
 /* REQUEST AFISHAS */
 export const REQUEST_AFISHAS = 'REQUEST_AFISHAS';
@@ -24,8 +25,10 @@ export function fetchAfishas(queryParams, params) {
 		dispatch(requestAfishas());
 
 		const uriParamsReady = uriHelper.getUriFromParams(queryParams);
+		const paramsPath = linkBuilder.createApiParams(params);
 
-		return fetch(`/api/afisha/search?${uriParamsReady}`)
+
+		return fetch(`/api/afisha/search${paramsPath}?${uriParamsReady}`)
 			.then(response => response.json())
 			.then(json =>
 				dispatch(recieveAfishas(json))

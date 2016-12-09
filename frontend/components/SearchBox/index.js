@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router'
 import update from 'react-addons-update';
 import DateRange from '../../components/DateRange'
-import linkBuilder from '../../utils/linkBuilder'
+import linkBuilder from '../../utils/link_builder'
 
 class SearchBox extends React.Component {
 	constructor() {

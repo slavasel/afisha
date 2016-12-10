@@ -31,7 +31,7 @@ module.exports = {
 				"$gte": new Date(startDate[0], startDate[1], startDate[2])
 			}
 		}
-		
+
 		return conditions;
 	}
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router'
 import update from 'react-addons-update';
 import DateRange from '../../components/DateRange'
-import linkBuilder from '../../utils/link_builder'
+import linkHelper from '../../utils/link'
 
 class SearchBox extends React.Component {
 	constructor() {
@@ -32,7 +32,7 @@ class SearchBox extends React.Component {
 
 	updateLink(event) {
 		event.preventDefault();
-		const searchLink = '/search' + linkBuilder.createLinkFromParams(this.state.formData);
+		const searchLink = '/search' + linkHelper.createLinkFromParams(this.state.formData);
 		browserHistory.push(searchLink);
 	}
 

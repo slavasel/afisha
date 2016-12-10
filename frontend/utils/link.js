@@ -1,6 +1,17 @@
 import moment from 'moment';
 import _ from 'lodash';
 
+const _webUrlConfig = {
+	dates: ":startDate.:endDate",
+	search: ':search'
+};
+
+const _apiUrlConfig = {
+	startDate: '-',
+	endDate: '-',
+	search: '-'
+};
+
 const _prepareData = (data) => {
 	let preparedData = Object.assign({}, data);
 
@@ -38,14 +49,33 @@ module.exports = {
 
 		let apiParams = {};
 		// todo: additional specific route + params (i.e. bbox)
-		apiParams = Object.assign(apiParams, _.defaults(formData, {
-			startDate: '-',
-			endDate: '-',
-			search: '-'
-		}));
+
+		// fill api url with default values if some params are empty
+		apiParams = Object.assign(apiParams, _.defaults(formData, _apiUrlConfig));
 
 		Object.keys(apiParams).map((idx) => {
 			link += `/${apiParams[idx]}`
+		});
+
+		return link;
+	},
+
+	getUriFromParams: (params) => {
+		let uriParams = _.transform(params, (res, v, k) => {
+			if (v || v === 0) res[k] = v;
+		});
+
+		const uriParamsReady = Object.keys(uriParams).map(function(key) {
+			return key + '=' + uriParams[key];
+		}).join('&');
+
+		return uriParamsReady;
+	},
+
+	getSearchLink: () => {
+		let link = '';
+		Object.keys(_webUrlConfig).map((idx) => {
+			link += `(/${idx}-${_webUrlConfig[idx]})`
 		});
 
 		return link;

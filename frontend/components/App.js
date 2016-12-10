@@ -5,17 +5,19 @@ import Landing from '../containers/Landing'
 import Favorites from '../containers/Favorites'
 import Detail from '../containers/Detail'
 import Search from '../containers/Search'
+import linkHelper from '../utils/link.js';
 
 const Root = props => (props.children);
 
 class App extends React.Component {
   render() {
+    const searchLink = "/search" + linkHelper.getSearchLink();
+
     return (
       <Router history={browserHistory}>
         <Route path="/" component={Root}>
           <IndexRoute component={Landing} />
-          {/* (/price-:minPrice.:maxPrice) */}
-          <Route path="/search(/dates-:startDate.:endDate)(/search-:search)"
+          <Route path={searchLink}
                  component={Search} />
           <Route path="/detail/:id" component={Detail} />
           <Route path="/favorites" component={Favorites} />

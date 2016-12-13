@@ -32,6 +32,11 @@ module.exports = {
 			}
 		}
 
+		if (params.search) {
+			conditions.$text = {$search: params.search};
+		}
+
+		console.log(conditions);
 		return conditions;
 	}
 };

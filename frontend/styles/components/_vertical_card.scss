@@ -54,7 +54,7 @@
   }
 
   &:hover {
-    background: #eee;
+    box-shadow: 1px 1px 1px #ccc;
   }
 
   @include respond-to(medium) {

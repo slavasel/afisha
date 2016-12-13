@@ -4,12 +4,12 @@
 	  "route": "search"
 	}
   },
-  "/api/afisha/search/:startDate/:endDate/:search": {
+  "/api/afisha/search/id/:id": {
 	"GET": {
 	  "route": "search"
 	}
   },
-  "/api/afisha/search/id/:id": {
+  "/api/afisha/search/:startDate/:endDate/:search": {
 	"GET": {
 	  "route": "search"
 	}
@@ -19,7 +19,7 @@
 	  "route": "search"
 	}
   },
-  "/api/afisha/add/:name/:place/:lat/:lng/:startDate/:endDate/:search": {
+  "/api/afisha/add/:name/:place/:lat/:lng/:startTime/:description": {
 	"GET": {
 	  "route": "add"
 	}
